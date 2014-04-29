@@ -4,7 +4,8 @@ module.exports = (grunt) ->
 
     meta:
       build  : 'build'
-      name   : 'txiki'
+      dist   : 'dist'
+      name   : 'micro'
       source : 'source'
       specs  : 'specs'
 
@@ -20,6 +21,23 @@ module.exports = (grunt) ->
         files: '<%= meta.build %>/<%= meta.name %>.utils.js' : '<%= source.utils %>'
       specs:
         files: '<%= meta.build %>/<%= meta.name %>.spec.js': '<%= source.specs %>'
+
+    concat:
+      dist:
+        src: [
+          '<%= meta.dist %>/<%= meta.name %>.init.js'
+          '<%= meta.dist %>/<%= meta.name %>.utils.js'
+        ]
+        dest: '<%= meta.dist %>/<%= meta.name %>.js'
+
+    uglify:
+      options:
+        mangle: true
+        report: 'gzip'
+      init:
+        files: '<%= meta.dist %>/<%= meta.name %>.init.js' : '<%= meta.build %>/<%= meta.name %>.init.js'
+      utils:
+        files: '<%= meta.dist %>/<%= meta.name %>.utils.js' : '<%= meta.build %>/<%= meta.name %>.utils.js'
 
     jasmine:
       pivotal:
@@ -39,7 +57,9 @@ module.exports = (grunt) ->
         tasks: ['coffee', 'jasmine']
 
     grunt.loadNpmTasks 'grunt-contrib-coffee'
+    grunt.loadNpmTasks 'grunt-contrib-concat'
     grunt.loadNpmTasks 'grunt-contrib-jasmine'
+    grunt.loadNpmTasks 'grunt-contrib-uglify'
     grunt.loadNpmTasks 'grunt-contrib-watch'
 
-    grunt.registerTask 'default', ['coffee', 'jasmine']
+    grunt.registerTask 'default', ['coffee', 'uglify', 'concat', 'jasmine']
