@@ -37,10 +37,19 @@ u = do ->
         callback u
 
     text: (value) ->
+      return this[0].textContent if value is undefined
       this.each ->
         this.textContent = value
 
+    find: (selector) ->
+      results = new u()
+      this.each ->
+        window.el = this
+        push.apply results, slice.call(this.querySelectorAll selector)
+      return results
+
     html: (value) ->
+      return this[0].innerHTML if value is undefined
       this.each ->
         this.innerHTML = value
 
