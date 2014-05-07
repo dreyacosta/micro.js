@@ -4,21 +4,26 @@
   "description": "Small JavaScript utility library",
   "main": "index.js",
   "scripts": {
-    "test": "npm default"
+    "test": "grunt test"
   },
   "keywords": [
     "Utility",
     "Lightweight",
     "DOM"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dreyacosta/micro.js.git"
+  },
   "author": "@dreyacosta",
   "license": "MIT",
   "devDependencies": {
     "grunt": "^0.4.4",
-    "grunt-contrib-jasmine": "^0.6.3",
+    "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-coffee": "^0.10.1",
-    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-jasmine": "^0.6.3",
     "grunt-contrib-uglify": "^0.4.0",
-    "grunt-contrib-concat": "^0.4.0"
+    "grunt-contrib-watch": "^0.6.1"
   }
 }
