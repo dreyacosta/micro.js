@@ -1,5 +1,5 @@
 # micro.js
-### A tiny library for managing the DOM
+### A tiny library for managing the DOM on modern browsers
 
 ## Usage
 
@@ -78,6 +78,7 @@ u(function() {
    */
   u.ajax({
     type: 'GET',
+    url: 'http://localhost:3000/movies',
     success: function(res) {
       console.log('AJAX success response', res);
     },
@@ -88,6 +89,7 @@ u(function() {
 
   u.ajax({
     type: 'POST',
+    url: 'http://localhost:3000/movies',
     data: {title: 'Lorem', description: 'Ipsum'},
     success: function(res) {
       console.log('AJAX success response', res);
@@ -97,13 +99,15 @@ u(function() {
     }
   });
 
+  // FORM DATA
   var formData = new FormData();
   formData.append('title', 'Lorem');
   formData.append('description', 'Ipsum');
 
   u.ajax({
     type: 'POST',
-    contentType: 'multipart/form-data',
+    url: 'http://localhost:3000/movies',
+    contentType: false,
     data: formData,
     success: function(res) {
       console.log('AJAX success response', res);
