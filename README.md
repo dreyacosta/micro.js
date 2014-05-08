@@ -1,4 +1,4 @@
-# micro.js
+# micro.js [![Build Status](https://travis-ci.org/dreyacosta/micro.js.svg?branch=master)](https://travis-ci.org/dreyacosta/micro.js)
 ### A tiny library for managing the DOM on modern browsers
 
 ## Usage
