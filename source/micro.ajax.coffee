@@ -1,41 +1,40 @@
-do ->
-  'use strict'
+'use strict'
 
-  u = module.exports.u if typeof module isnt 'undefined'
-  u = window.u if typeof window isnt 'undefined'
-  u = {} if typeof u is 'undefined'
+utils = require './micro.utils.coffee'
+db    = require './micro.localstorage.coffee'
 
-  _xhrHeaders = (xhr, options) ->
-    options.headers['Content-Type'] = options.contentType if options.contentType
-    options.headers['Accept'] = options.contentType if options.contentType
-    for header of options.headers
-      xhr.setRequestHeader header, options.headers[header]
-    return
+_xhrHeaders = (xhr, options) ->
+  options.headers['Content-Type'] = options.contentType if options.contentType
+  options.headers['Accept'] = options.contentType if options.contentType
+  for header of options.headers
+    xhr.setRequestHeader header, options.headers[header]
+  return
 
-  _parseResponse = (xhr, options) ->
-    response = xhr
-    if options.contentType is 'application/json'
-      response = JSON.parse xhr.responseText
-    response
+_parseResponse = (xhr, options) ->
+  response = xhr
+  if options.contentType is 'application/json'
+    response = JSON.parse xhr.responseText
+  response
 
-  _msToMin = (ms) ->
-    ms / 1000 / 60
+_msToMin = (ms) ->
+  ms / 1000 / 60
 
-  _cacheNotExpired = (req, expireTime) ->
-    true if _msToMin(new Date() - new Date(req.date)) < expireTime
+_cacheNotExpired = (req, expireTime) ->
+  true if _msToMin(new Date() - new Date(req.date)) < expireTime
 
-  _cacheRequest = (data, options) ->
-    item =
-      url: options.url
-      date: new Date()
-      data: data
-    u.db.update options.cacheDB, 'url', options.url, item
+_cacheRequest = (data, options) ->
+  item =
+    url: options.url
+    date: new Date()
+    data: data
+  db.update options.cacheDB, 'url', options.url, item
 
-  _checkCache = (options) ->
-    cache = u.db.findOne options.cacheDB, url: options.url
-    cache.data if cache and _cacheNotExpired cache, options.minutesCached
+_checkCache = (options) ->
+  cache = db.findOne options.cacheDB, url: options.url
+  cache.data if cache and _cacheNotExpired cache, options.minutesCached
 
-  u.ajaxSettings =
+ajax =
+  ajaxSettings:
     type: 'GET'
     async: true
     cache: false
@@ -48,14 +47,14 @@ do ->
     crossDomain: false
     timeout: 0
 
-  u.ajax = (options) ->
-    settings = u.extend {}, u.ajaxSettings
-    options  = u.extend settings, options
+  ajax: (options) ->
+    settings = utils.extend {}, @ajaxSettings
+    options  = utils.extend settings, options
 
     if options.cache and _checkCache(options)
       return options.success _checkCache(options)
 
-    options.data = u.serialize(options)
+    options.data = @serialize options
 
     req = new XMLHttpRequest()
 
@@ -75,10 +74,10 @@ do ->
     req.send options.data
     req
 
-  u.serialize = (options) ->
+  serialize: (options) ->
     data = options.data
     if options.contentType is 'application/json'
-      data = JSON.stringify(options.data)
+      data = JSON.stringify options.data
     data
 
-  u
+module.exports = ajax
