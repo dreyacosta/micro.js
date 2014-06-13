@@ -1,28 +1,30 @@
-do (u) ->
-  'use strict'
+'use strict'
 
-  u.subscribers = {}
+utils =
+  subscribers: {}
 
-  u.extend = (obj) ->
-    args = Array::slice.call(arguments, 1)
-    args.forEach (source) ->
-      obj[method] = source[method] for method of source
-    return obj
-
-  u.subscribe = (topic, func) ->
-    if !u.subscribers[topic] then u.subscribers[topic] = []
-    if u.subscribers[topic].indexOf(func) is -1 then u.subscribers[topic].push func
+  subscribe: (topic, func) ->
+    if !@subscribers[topic] then @subscribers[topic] = []
+    if @subscribers[topic].indexOf(func) is -1 then @subscribers[topic].push func
     return
 
-  u.unsubscribe = (topic, func) ->
-    listeners = u.subscribers[topic]
+  unsubscribe: (topic, func) ->
+    listeners = @subscribers[topic]
     return if !listeners
     index = listeners.indexOf(func)
     listeners.splice(index, 1) if index > -1
     return
 
-  u.publish = (topic, eventObj) ->
-    return false if !u.subscribers[topic]
+  publish: (topic, eventObj) ->
+    return false if !@subscribers[topic]
     if !eventObj.type then eventObj.type = topic
-    listeners = u.subscribers[topic]
+    listeners = @subscribers[topic]
     listener(eventObj) for listener in listeners
+
+  extend: (obj) ->
+    args = Array::slice.call(arguments, 1)
+    args.forEach (source) ->
+      obj[method] = source[method] for method of source
+    obj
+
+module.exports = utils
