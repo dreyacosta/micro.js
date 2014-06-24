@@ -1,7 +1,23 @@
 # micro.js [![Build Status](https://travis-ci.org/dreyacosta/micro.js.svg?branch=master)](https://travis-ci.org/dreyacosta/micro.js)
-### A tiny library for managing the DOM on modern browsers
+Tiny library for managing the DOM on modern browsers
 
 ## Usage
+
+### Load
+Link `micro.js` in your HTML file:
+```html
+<script src="path/to/micro.js"></script>
+```
+
+Or via Browserify:
+```js
+var u = require('micro');
+```
+
+Compile Browserify example:
+```shell
+$ browserify script.js -t coffeeify > browser.js
+```
 
 ### DOM Ready
 ```js
