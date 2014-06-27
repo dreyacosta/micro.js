@@ -1,0 +1,26 @@
+{
+  "name": "micro.js",
+  "main": "micro.min.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/dreyacosta/micro.js",
+  "authors": [
+    "@dreyacosta"
+  ],
+  "description": "Tiny library for managing the DOM on modern browsers",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "DOM",
+    "Utility",
+    "Lightweight"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
