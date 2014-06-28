@@ -22,7 +22,7 @@ module.exports = (grunt) ->
 
     clean:
       build  : src: ['build']
-      dist   : src: ['dist/**/*']
+      dist   : src: ['dist']
 
     copy:
       dist   : src: '<%= meta.dist %>/*', dest: '<%= bower.dist %>/', expand: true, flatten: true
@@ -58,5 +58,5 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-contrib-watch'
 
     grunt.registerTask 'test', ['clean', 'coffee', 'browserify', 'jasmine']
-    grunt.registerTask 'bower', ['default', 'copy']
+    grunt.registerTask 'bower', ['default', 'copy', 'clean']
     grunt.registerTask 'default', ['clean', 'coffee', 'browserify', 'uglify', 'jasmine', 'clean:build']
