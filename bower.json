@@ -1,7 +1,7 @@
 {
   "name": "micro.js",
   "main": "micro.min.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/dreyacosta/micro.js",
   "authors": [
     "@dreyacosta"
@@ -12,8 +12,9 @@
   ],
   "keywords": [
     "DOM",
-    "Utility",
-    "Lightweight"
+    "browser",
+    "utility",
+    "lightweight"
   ],
   "license": "MIT",
   "ignore": [

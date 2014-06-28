@@ -1,15 +1,16 @@
 {
   "name": "micro.js",
-  "version": "0.0.1",
-  "description": "Small JavaScript utility library",
+  "version": "0.1.1",
+  "description": "Tiny library for managing the DOM on modern browsers",
   "main": "index.js",
   "scripts": {
     "test": "grunt test --verbose"
   },
   "keywords": [
-    "Utility",
-    "Lightweight",
-    "DOM"
+    "utility",
+    "lightweight",
+    "DOM",
+    "browser"
   ],
   "repository": {
     "type": "git",
