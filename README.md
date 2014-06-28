@@ -4,19 +4,48 @@ Tiny library for managing the DOM on modern browsers
 ## Usage
 
 ### Load
-Link `micro.js` in your HTML file:
-```html
-<script src="path/to/micro.js"></script>
-```
-
-Or via Browserify:
-```js
-var u = require('micro');
-```
-
-Compile Browserify example:
+**Via Bower**:
 ```shell
-$ browserify script.js -t coffeeify > browser.js
+$ sudo npm install -g bower
+$ bower install micro.js
+```
+
+```html
+<script src="bower_components/micro.js/micro.min.js"></script>
+```
+
+**Or via Browserify**:
+```shell
+$ sudo npm install -g browserify
+$ npm install coffeeify
+$ npm install micro.js
+```
+
+```js
+// script.js
+var u = require('micro.js');
+```
+
+```shell
+# Compile browserify script.js
+$ browserify -t coffeeify -r micro.js script.js > browser.js
+```
+
+```js
+// Compile with Grunt and grunt-browserify
+browserify: {
+  dist: {
+    files: {
+      'browser.js': ['script.js']
+    },
+    options: {
+      require: ['micro.js'],
+      transform: ['coffeeify']
+    }
+  }
+}
+
+grunt.loadNpmTasks('grunt-browserify');
 ```
 
 ### DOM Ready
