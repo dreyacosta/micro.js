@@ -33,7 +33,6 @@ module.exports = (grunt) ->
     browserify:
       dist:
         files: 'dist/micro.js' : ['source/micro.coffee']
-        options: transform: ['coffeeify']
 
     uglify:
       options: mangle: true, report: 'gzip'
