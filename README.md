@@ -28,7 +28,7 @@ var u = require('micro.js');
 
 ```shell
 # Compile browserify script.js
-$ browserify -t coffeeify -r micro.js script.js > browser.js
+$ browserify script.js > browser.js
 ```
 
 ```js
@@ -37,10 +37,6 @@ browserify: {
   dist: {
     files: {
       'browser.js': ['script.js']
-    },
-    options: {
-      require: ['micro.js'],
-      transform: ['coffeeify']
     }
   }
 }
