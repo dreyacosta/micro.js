@@ -7,9 +7,6 @@ ajax         = require('./micro.ajax.coffee')
 utils.extend u::, dom
 utils.extend u, utils, db: localstorage, ajax
 
-if typeof module isnt 'undefined'
-  if module.exports
-    exports = module.exports = u
-  exports.u = u
-
 window.u = u if typeof window isnt 'undefined'
+
+module.exports = u

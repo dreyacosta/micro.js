@@ -23,13 +23,6 @@ u = (selector) ->
 u:: =
   length: 0
 
-u.VERSION = '0.0.1'
-
-if typeof module isnt 'undefined'
-  if module.exports
-    exports = module.exports = u
-  exports.u = u
-
-window.u = u if typeof window isnt 'undefined'
+u.VERSION = '0.1.4'
 
 module.exports = u
