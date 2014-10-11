@@ -4,7 +4,9 @@
   "description": "Tiny library for managing the DOM on modern browsers",
   "main": "index.js",
   "browserify": {
-    "transform": [ "coffeeify" ]
+    "transform": [
+      "coffeeify"
+    ]
   },
   "scripts": {
     "test": "grunt test --verbose"
@@ -22,14 +24,19 @@
   "author": "@dreyacosta",
   "license": "MIT",
   "devDependencies": {
-    "browserify": "^4.1.5",
+    "browserify": "^6.0.3",
     "grunt": "^0.4.4",
     "grunt-browserify": "^2.1.0",
     "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-copy": "^0.5.0",
     "grunt-contrib-jasmine": "^0.6.3",
     "grunt-contrib-uglify": "^0.4.0",
-    "grunt-contrib-watch": "^0.6.1"
+    "grunt-contrib-watch": "^0.6.1",
+    "gulp": "^3.8.8",
+    "gulp-copy": "0.0.2",
+    "gulp-uglify": "^1.0.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0"
   },
   "dependencies": {
     "coffee-script": "^1.7.1",
