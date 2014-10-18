@@ -1,23 +1,34 @@
-'use strict'
+"use strict"
 
-utils = require './micro.utils.coffee'
-db    = require './micro.localstorage.coffee'
+utils = require "./micro.utils.coffee"
+db    = require "./micro.localstorage.coffee"
+
+DEFAULT =
+  TYPE: "GET"
+  MIME: "json"
+
+MIME_TYPES =
+  json: "application/json"
+  form: "application/x-www-form-urlencoded"
+  html: "text/html"
+  text: "text/plain"
 
 ajax =
   ajaxSettings:
-    type: 'GET'
-    async: true
-    cache: false
-    cacheDB: 'ajaxRequests'
+    type         : DEFAULT.TYPE
+    async        : true
+    cache        : false
+    cacheDB      : 'xhrs'
     minutesCached: 5
-    success: (res) ->
-    error: (res) ->
-    contentType : 'application/json'
-    headers: {}
-    crossDomain: false
-    timeout: 0
+    success      : (res) ->
+    error        : (res) ->
+    dataType     : DEFAULT.MIME
+    headers      : {}
+    crossDomain  : false
+    timeout      : 0
 
   ajax: (options) ->
+    @ajaxSettings.headers = {}
     settings = utils.extend {}, @ajaxSettings
     options  = utils.extend settings, options
 
@@ -46,21 +57,21 @@ ajax =
 
   serialize: (options) ->
     data = options.data
-    if options.contentType is 'application/json'
+    if options.dataType is DEFAULT.MIME
       data = JSON.stringify options.data
     data
 
 # -- Private methods -----------------------------------------------------------
 _xhrHeaders = (xhr, options) ->
-  options.headers['Content-Type'] = options.contentType if options.contentType
-  options.headers['Accept'] = options.contentType if options.contentType
+  options.headers['Content-Type'] = MIME_TYPES[options.dataType] if options.dataType
+  options.headers['Accept'] = MIME_TYPES[options.dataType] if options.dataType
   for header of options.headers
     xhr.setRequestHeader header, options.headers[header]
   return
 
 _parseResponse = (xhr, options) ->
   response = xhr
-  if options.contentType is 'application/json'
+  if options.dataType is DEFAULT.MIME
     response = JSON.parse xhr.responseText
   response
 
