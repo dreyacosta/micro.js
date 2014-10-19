@@ -1,8 +1,10 @@
-u            = require('./micro.core.coffee')
-dom          = require('./micro.dom.coffee')
-utils        = require('./micro.utils.coffee')
-localstorage = require('./micro.localstorage.coffee')
-ajax         = require('./micro.ajax.coffee')
+"use strict"
+
+u            = require("./micro.core.coffee")
+dom          = require("./micro.dom.coffee")
+utils        = require("./micro.utils.coffee")
+localstorage = require("./micro.localstorage.coffee")
+ajax         = require("./micro.ajax.coffee")
 
 utils.extend u::, dom
 utils.extend u, utils, db: localstorage, ajax
