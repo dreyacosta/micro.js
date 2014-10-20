@@ -15,29 +15,30 @@ meta =
   source : 'source'
   specs  : 'specs'
 
-source_ =
-  micro: meta.source + '/' + meta.name + '.coffee'
+source =
+  micro: "./" + meta.source + "/" + meta.name + ".coffee"
+  specs: "./" + meta.specs + "/" + meta.name + ".specs.js"
 
 gulp.task "browserify", ->
   pa2 = path.normalize(__dirname + '/..') + '/bower-micro'
 
   bundler = browserify
     entries: [
-      "./source/micro.coffee"
+      source.micro
     ]
     extensions: ['.coffee']
     debug: true
 
   bundler.bundle()
-    .pipe sourceStream meta.name + '.js'
+    .pipe sourceStream meta.name + ".js"
     .pipe buffer()
     .pipe gulp.dest meta.build
 
   bundler.bundle()
-    .pipe sourceStream "micro.min.js"
+    .pipe sourceStream meta.name + ".min.js"
     .pipe buffer()
     .pipe uglify()
-    .pipe gulp.dest pa2
+    .pipe gulp.dest meta.dist
 
 gulp.task "copy", ->
   gulp.src ['./build/micro.js']
