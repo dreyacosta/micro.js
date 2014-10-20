@@ -37,23 +37,23 @@ ajax =
 
     options.data = @serialize options
 
-    req = new XMLHttpRequest()
+    xhr = new XMLHttpRequest()
 
-    req.open options.type, options.url, options.async
+    xhr.open options.type, options.url, options.async
 
-    req.onload = ->
-      if req.status >= 200 and req.status < 400
-        data = _parseResponse req, options
+    xhr.onload = ->
+      if xhr.status >= 200 and xhr.status < 400
+        data = _parseResponse xhr, options
         if options.cache then _cacheRequest data, options
         options.success data
 
-    req.onerror = ->
+    xhr.onerror = ->
       options.error 'error'
 
-    _xhrHeaders req, options
+    _xhrHeaders xhr, options
 
-    req.send options.data
-    req
+    xhr.send options.data
+    xhr
 
   serialize: (options) ->
     data = options.data
