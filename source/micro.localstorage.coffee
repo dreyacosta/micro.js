@@ -1,18 +1,4 @@
-'use strict'
-
-_filter = (obj, predicate) ->
-  result = []
-  result.push(item) for item in obj when predicate item
-  result
-
-_filterOne = (obj, predicate) ->
-  return item for item in obj when predicate item
-  false
-
-_matches = (attrs) ->
-  (obj) ->
-    return false for key, val of attrs when attrs[key] isnt obj[key]
-    true
+"use strict"
 
 localDB =
   data: {}
@@ -56,5 +42,20 @@ localDB =
     index = items.indexOf item for item in items when item[key] is value
     items.splice index, 1 if index > -1
     @write collection
+
+# -- Private methods -----------------------------------------------------------
+_filter = (obj, predicate) ->
+  result = []
+  result.push(item) for item in obj when predicate item
+  result
+
+_filterOne = (obj, predicate) ->
+  return item for item in obj when predicate item
+  false
+
+_matches = (attrs) ->
+  (obj) ->
+    return false for key, val of attrs when attrs[key] isnt obj[key]
+    true
 
 module.exports = localDB
