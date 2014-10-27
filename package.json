@@ -9,7 +9,7 @@
     ]
   },
   "scripts": {
-    "test": "grunt test --verbose"
+    "test": "gulp test"
   },
   "keywords": [
     "utility",
