@@ -63,7 +63,7 @@ gulp.task "specs", ->
     .pipe coffee()
     .pipe gulp.dest meta.build
 
-gulp.task "test", ["specs"], (done) ->
+gulp.task "test", ["browserify", "specs"], (done) ->
   karma.start
     configFile: __dirname + '/karma.conf.js'
     reporters: ['progress']
