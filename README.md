@@ -17,7 +17,6 @@ $ bower install micro.js
 **Or via Browserify**:
 ```shell
 $ sudo npm install -g browserify
-$ npm install coffeeify
 $ npm install micro.js
 ```
 
@@ -29,19 +28,6 @@ var u = require('micro.js');
 ```shell
 # Compile browserify script.js
 $ browserify script.js > browser.js
-```
-
-```js
-// Compile with Grunt and grunt-browserify
-browserify: {
-  dist: {
-    files: {
-      'browser.js': ['script.js']
-    }
-  }
-}
-
-grunt.loadNpmTasks('grunt-browserify');
 ```
 
 ### DOM Ready
@@ -110,6 +96,9 @@ u(function() {
    * Defaults settings:
       type: 'GET'
       async: true
+      cache: false
+      cacheDB: 'xhrs'
+      minutesCached: 5
       success: (res) ->
       error: (res) ->
       contentType : 'application/json'
@@ -120,6 +109,21 @@ u(function() {
   u.ajax({
     type: 'GET',
     url: 'http://localhost:3000/movies',
+    success: function(res) {
+      console.log('AJAX success response', res);
+    },
+    error: function(res) {
+      console.log('AJAX error response', res);
+    }
+  });
+
+  // Cached GET AJAX
+  u.ajax({
+    type: 'GET',
+    url: 'http://localhost:3000/movies',
+    cache: true,
+    cacheDB: 'xhrs',
+    minutesCached: 5,
     success: function(res) {
       console.log('AJAX success response', res);
     },
