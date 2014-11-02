@@ -18,8 +18,9 @@ meta =
   specs  : 'specs'
 
 source =
-  micro: "./" + meta.source + "/" + meta.name + ".coffee"
-  specs: ["./" + meta.specs + "/*.spec.coffee"]
+  all   : "./" + meta.source + "/*.coffee"
+  micro : "./" + meta.source + "/" + meta.name + ".coffee"
+  specs : "./" + meta.specs + "/*.spec.coffee"
 
 dist = [
   "./" + meta.dist + "/" + meta.name + ".js"
@@ -66,7 +67,10 @@ gulp.task "specs", ->
 gulp.task "test", ["browserify", "specs"], (done) ->
   karma.start
     configFile: __dirname + '/karma.conf.js'
-    reporters: ['progress']
     colors: true
     singleRun: true
   , done
+
+gulp.task "default", ->
+  gulp.watch source.all, ["test"]
+  gulp.watch source.specs, ["test"]
