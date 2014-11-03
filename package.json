@@ -24,20 +24,19 @@
   "author": "@dreyacosta",
   "license": "MIT",
   "devDependencies": {
-    "browserify": "^6.0.3",
+    "browserify": "^6.2.0",
     "gulp": "^3.8.9",
     "gulp-coffee": "^2.2.0",
     "gulp-concat": "^2.4.1",
     "gulp-uglify": "^1.0.1",
     "karma": "^0.12.24",
-    "karma-jasmine": "^0.2.0",
+    "karma-jasmine": "^0.2.3",
     "karma-phantomjs-launcher": "^0.1.4",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0"
   },
   "dependencies": {
-    "coffee-script": "^1.7.1",
-    "coffeeify": "^0.6.0",
-    "grunt-contrib-coffee": "^0.10.1"
+    "coffee-script": "^1.8.0",
+    "coffeeify": "^0.7.0"
   }
 }
