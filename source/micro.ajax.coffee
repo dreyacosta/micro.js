@@ -86,7 +86,8 @@ _cacheRequest = (data, options) ->
     url: options.url
     date: new Date()
     data: data
-  db.update options.cacheDB, 'url', options.url, item
+  xhrData = db.findOne options.cacheDB, url: options.url
+  db.update options.cacheDB, xhrData.uuid, item
 
 _checkCache = (options) ->
   cache = db.findOne options.cacheDB, url: options.url
