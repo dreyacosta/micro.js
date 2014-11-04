@@ -3,19 +3,19 @@
 path         = require "path"
 browserify   = require "browserify"
 gulp         = require "gulp"
-uglify       = require 'gulp-uglify'
-coffee       = require 'gulp-coffee'
-concat       = require 'gulp-concat'
+uglify       = require "gulp-uglify"
+coffee       = require "gulp-coffee"
+concat       = require "gulp-concat"
 karma        = require("karma").server
 sourceStream = require "vinyl-source-stream"
 buffer       = require "vinyl-buffer"
 
 meta =
-  build  : 'build'
-  dist   : 'dist'
-  name   : 'micro'
-  source : 'source'
-  specs  : 'specs'
+  build  : "build"
+  dist   : "dist"
+  name   : "micro"
+  source : "source"
+  specs  : "specs"
 
 source =
   all   : "./" + meta.source + "/*.coffee"
@@ -30,6 +30,11 @@ dist = [
   "./README.md"
 ]
 
+test = [
+  "./" + meta.build + "/micro.js"
+  "./" + meta.build + "/micro.spec.js"
+]
+
 bower = path.normalize(__dirname + "/..") + "/bower-" + meta.name
 
 gulp.task "browserify", ->
@@ -37,7 +42,7 @@ gulp.task "browserify", ->
     entries: [
       source.micro
     ]
-    extensions: ['.coffee']
+    extensions: [".coffee"]
     debug: true
 
   bundler.bundle()
@@ -66,8 +71,14 @@ gulp.task "specs", ->
 
 gulp.task "test", ["browserify", "specs"], (done) ->
   karma.start
-    configFile: __dirname + '/karma.conf.js'
+    autoWatch: "disable"
+    basePath: "./"
+    browsers: ["PhantomJS"]
     colors: true
+    files: test
+    frameworks: ["jasmine"]
+    port: 8001
+    reporters: ["progress"]
     singleRun: true
   , done
 
