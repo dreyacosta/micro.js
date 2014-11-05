@@ -1,6 +1,6 @@
 {
   "name": "micro.js",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Tiny library for managing the DOM on modern browsers",
   "main": "index.js",
   "browserify": {
@@ -15,7 +15,9 @@
     "utility",
     "lightweight",
     "DOM",
-    "browser"
+    "browser",
+    "AJAX",
+    "localStorage"
   ],
   "repository": {
     "type": "git",
