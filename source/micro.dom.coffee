@@ -25,7 +25,6 @@ manipulationsMethods =
   find: (selector) ->
     results = new u()
     this.each ->
-      window.el = this
       push.apply results, slice.call(this.querySelectorAll selector)
     return results
 
