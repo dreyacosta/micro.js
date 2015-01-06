@@ -1,6 +1,6 @@
 'use strict'
 
-el = document.write '<div id="fixture">Fixture</div>'
+el = document.write '<div id="fixture">Fixture</div><input type="text" name="username" value="dreyacosta" />'
 
 describe "DOM manipulation methods", ->
 
@@ -11,6 +11,10 @@ describe "DOM manipulation methods", ->
   it "should get fixture div innerHTML", ->
     div = u('#fixture')
     expect(do div.html).toEqual 'Fixture'
+
+  it "should get fixture input value", ->
+    inputEl = u('input[name=username]')
+    expect(do inputEl.value).toEqual "dreyacosta"
 
   it "should modify fixture div content", ->
     div = u('#fixture').html 'Hello World'
