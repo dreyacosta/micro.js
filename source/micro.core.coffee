@@ -23,6 +23,6 @@ u = (selector) ->
 u:: =
   length: 0
 
-u.VERSION = '0.2.1'
+u.VERSION = '0.2.2'
 
 module.exports = u

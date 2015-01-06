@@ -1,6 +1,6 @@
 {
   "name": "micro.js",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Tiny library for managing the DOM on modern browsers",
   "main": "index.js",
   "browserify": {
