@@ -33,6 +33,11 @@ manipulationsMethods =
     this.each ->
       this.innerHTML = value
 
+  value: (value) ->
+    return this[0].value if value is undefined
+    this.each ->
+      this.value = value
+
   append: (el) ->
     this.each ->
       this.appendChild el
